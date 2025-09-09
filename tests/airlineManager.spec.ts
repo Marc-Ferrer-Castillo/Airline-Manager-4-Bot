@@ -7,9 +7,11 @@ import { MaintenanceUtils } from '../utils/maintenance.utils';
 
 require('dotenv').config();
 
-test('All Operations', async ({ page }) => {
-  test.setTimeout(60000);
+const waitMin = parseInt(process.env.WAIT_AFTER_DEPART_MINUTES ?? '5', 10);
+const extraMin = 2;
+test.setTimeout((waitMin + extraMin) * 60 * 1000);
 
+test('All Operations', async ({ page }) => {
   // Variable Initialization
   const fuelUtils = new FuelUtils(page);
   const generalUtils = new GeneralUtils(page);
