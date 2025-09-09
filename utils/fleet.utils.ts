@@ -35,7 +35,7 @@ export class FleetUtils {
   }
 
   private async clickDepartAllAndLogOnce(): Promise<void> {
-    await ('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text(/^\s*Depart\b/i)').click();
+    await ('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text("Depart")').click();
     
     await GeneralUtils.sleep(1500);
 
@@ -62,14 +62,14 @@ export class FleetUtils {
     console.log('Looking if there are any planes to be departed...');
 
     // 1) Quick sweep
-    let departAllVisible = await ('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text(/^\s*Depart\b/i)').isVisible();
+    let departAllVisible = await ('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text("Depart")').isVisible();
     let count = 0;
 
     while (departAllVisible && count < this.maxTry) {
       console.log('Departing...');
       await this.clickDepartAllAndLogOnce();
 
-      departAllVisible = await ('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text(/^\s*Depart\b/i)').isVisible();
+      departAllVisible = await ('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text("Depart")').isVisible();
       count++;
     }
 
@@ -79,7 +79,7 @@ export class FleetUtils {
       console.log(`Entering post-depart watch window for up to ${this.waitAfterDepartMs / 60000} minutes...`);
 
       while (Date.now() < deadline) {
-        const visible = await this.page.locator('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text(/^\s*Depart\b/i)').isVisible().catch(() => false);
+        const visible = await this.page.locator('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text("Depart")').isVisible().catch(() => false);
 
         if (visible) {
           console.log('New arrivals ready. Departing batch...');
