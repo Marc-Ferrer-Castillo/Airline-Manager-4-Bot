@@ -35,7 +35,7 @@ export class FleetUtils {
   }
 
   private async clickDepartAllAndLogOnce(): Promise<void> {
-    await ('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text("Depart")').click();
+    await this.page.locator('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text("Depart").click();
     
     await GeneralUtils.sleep(1500);
 
@@ -62,14 +62,14 @@ export class FleetUtils {
     console.log('Looking if there are any planes to be departed...');
 
     // 1) Quick sweep
-    let departAllVisible = await ('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text("Depart")').isVisible();
+    let departAllVisible = await this.page.locator('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text("Depart")').isVisible();
     let count = 0;
 
     while (departAllVisible && count < this.maxTry) {
       console.log('Departing...');
       await this.clickDepartAllAndLogOnce();
 
-      departAllVisible = await ('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text("Depart")').isVisible();
+      departAllVisible = await this.page.locator('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text("Depart")').isVisible();
       count++;
     }
 
