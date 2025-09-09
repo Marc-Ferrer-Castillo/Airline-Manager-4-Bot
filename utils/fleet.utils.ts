@@ -5,14 +5,14 @@ require('dotenv').config();
 
 export class FleetUtils {
     page: Page;
-    maxTry: number; // evita bucles infinitos en el barrido inicial
+    maxTry: number; // avoids infinite loops on the initial sweep
 
     private waitAfterDepartMs: number;
     private pollIntervalMs: number;
 
     constructor(page: Page) {
         this.page = page;
-        this.maxTry = 8; // mantiene tu comportamiento actual
+        this.maxTry = 8;
 
         // Config .env (optional)
         const waitMin = parseInt(process.env.WAIT_AFTER_DEPART_MINUTES ?? '5', 10);
