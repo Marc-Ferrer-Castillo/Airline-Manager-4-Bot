@@ -11,7 +11,7 @@ export class MaintenanceUtils {
     public async repairPlanes() {
         await this.page.getByRole('button', { name: ' Plan' }).click();
         await this.page.getByRole('button', { name: ' Bulk repair' }).click();
-        await this.page.locator('#repairPct').selectOption('60');
+        await this.page.locator('#repairPct').selectOption('80');
         await GeneralUtils.sleep(1000);
         const noPlaneExists = await this.page.getByText('There are no aircraft worn to').isVisible();
         if(!noPlaneExists) {
