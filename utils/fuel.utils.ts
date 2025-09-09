@@ -49,7 +49,7 @@ export class FuelUtils {
             await this.page.getByPlaceholder('Amount to purchase').fill(emptyFuelCapacity);
             await this.page.getByRole('button', { name: ' Purchase' }).click();
 
-            console.log('Bought Fuel Successfully! Amount of fuel bought: ' + emptyFuelCapacity + ' Litres');
+            console.log('Bought Fuel Successfully! Amount of fuel bought: ' + emptyFuelCapacity);
         } else {
             console.log('Fuel price is above max. Skipping purchase.');
         }
