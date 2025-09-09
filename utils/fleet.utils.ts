@@ -35,7 +35,7 @@ export class FleetUtils {
   }
 
   private async clickDepartAllAndLogOnce(): Promise<void> {
-    await this.page.locator('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text("Depart").click();
+    await this.page.locator('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text("Depart")).click();
     
     await GeneralUtils.sleep(1500);
 
