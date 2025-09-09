@@ -54,7 +54,7 @@ export class FleetUtils {
     if (count === null) {
       console.log('ℹ️ Depart clicked, but no snackbar count visible.');
     } else {
-      console.log(`🛫 Departed ${count} plane(s) in this click.`);
+      console.log(`✈️ Departed ${count} plane(s) in this click.`);
     }
   }
 
