@@ -31,6 +31,8 @@ export class GeneralUtils {
         await page.locator('#lPass').fill(this.password);
         await page.getByRole('button', { name: 'Log In', exact: true }).click();
 
+        await page.reload({ waitUntil: 'networkidle' });
+        
         console.log('Logged in successfully!');
     }
 }
