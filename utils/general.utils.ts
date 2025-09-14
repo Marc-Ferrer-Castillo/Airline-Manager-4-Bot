@@ -31,7 +31,8 @@ export class GeneralUtils {
         await page.locator('#lPass').fill(this.password);
         await page.getByRole('button', { name: 'Log In', exact: true }).click();
 
-        await page.reload({ waitUntil: 'networkidle' });
+        await page.waitForLoadState('networkidle');              // ensure cookies/session are set
+        await page.reload({ waitUntil: 'networkidle' });         // hard refresh so app initializes as logged-in
         
         console.log('Logged in successfully!');
     }
