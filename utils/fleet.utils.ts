@@ -79,6 +79,10 @@ export class FleetUtils {
       console.log(`Entering post-depart watch window for up to ${this.waitAfterDepartMs / 60000} minutes...`);
 
       while (Date.now() < deadline) {
+				if (Date.now() >= deadline) {
+		      console.log('Deadline reached. Exiting polling.');
+		      return;
+    		}
         await GeneralUtils.sleep(1500);
         const visible = await this.page.locator('button:has(#listDepartAmount), button:has-text("Depart all"), button:has-text("Depart")').first().isVisible().catch(() => false);
 
